@@ -7,6 +7,9 @@ export default function Home() {
     const [guess, setGuess] = useState(''); // Client-only state
     const [response, setResponse] = useState(''); // Client-only state
 
+    console.log('Server URL:', process.env.NEXT_PUBLIC_SERVER_URL);
+
+
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -17,13 +20,14 @@ export default function Home() {
 
         try {
             // Replace with your ngrok URL
-            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/guess`, {
+            const res = await fetch('https://1909-178-134-133-38.ngrok-free.app/guess', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ guess: parseInt(guess, 10) }), // Parse and validate guess
+                body: JSON.stringify({ guess: parseInt(guess, 10) }),
             });
+            
 
 
 
