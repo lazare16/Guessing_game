@@ -19,10 +19,13 @@ export default function Home() {
             // Replace with your ngrok URL
             const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/guess`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ guess: parseInt(guess, 10) }), // Parse safely
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ guess: parseInt(guess, 10) }), // Parse and validate guess
             });
-            
+
+
 
             const text = await res.text();
             setResponse(text);
